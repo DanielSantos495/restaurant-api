@@ -75,7 +75,7 @@ class MongoLib {
    query(collection, data) {
       return this.connect()
          .then(db => {
-            return db.collection(collection).findOne({ username: data.username })
+            return db.collection(collection).findOne({ username: data })
          })
          .catch(console.error)
    }

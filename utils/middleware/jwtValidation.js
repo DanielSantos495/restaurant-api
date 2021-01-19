@@ -2,21 +2,11 @@ const jwt = require('jsonwebtoken');
 const boom = require('boom');
 const UsersService = require('../../components/users/controller');
 const config = require('../../config');
+const withoutStackError = require('../withoutStackErro');
 
 const usersService = new UsersService();
 
-const withoutStackError = (message, status) => {
 
-   const err = new Error(message);
-   err.statusCode = status
-
-   if(config.env  === 'development') {
-      return err;
-   } else {
-      delete err.stack;
-      return err;
-   }
-}
 
 // Verificamos si el token esta valido
 const verify = token => {

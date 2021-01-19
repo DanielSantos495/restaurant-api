@@ -24,14 +24,13 @@ class AuthService {
    }
 
    async loginUser({ user }) {
-      const userInDb = await this.mongoDB.query(this.collection, user);
+      const userInDb = await this.mongoDB.query(this.collection, user.username);
       const correctPassword = await bcrypt.compare(user.password, userInDb.password);
-
       if (correctPassword) {
          delete userInDb.password;
          // Retornamos el JWT
          return jwt.sign(userInDb, config.authJwtSecret, {
-            expiresIn: '15min'
+            expiresIn: '1440min'
          })
       } else {
          throw new Error('Invalid data');
