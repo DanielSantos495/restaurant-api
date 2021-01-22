@@ -1,3 +1,5 @@
+const config = require('../config')
+
 const withoutStackError = (message, status) => {
 
    const err = new Error(message);
