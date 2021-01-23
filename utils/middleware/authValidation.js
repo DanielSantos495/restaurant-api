@@ -18,7 +18,6 @@ const formatData = data => {
       username: dataInArray[0],
       password: dataInArray[1]
    }
-   console.log(newFormt);
 
    return newFormt
 }

@@ -1,0 +1,497 @@
+{
+   "swagger": "2.0",
+   "info": {
+     "description": "Api para menú de restaurante con **CRUD** de productos, con **registro** e **inicio de sesión** de usuario admin para gestionar los productos en la carta del menú. **Solo lo métodos GET de productos pueden ser accedidos por cualquiera, los demás deberán tener autorización**",
+     "version": "1.0.0",
+     "title": "Restaurant"
+   },
+   "host": "localhost:3001",
+   "basePath": "/api",
+   "schemes": [
+     "https",
+     "http"
+   ],
+   "paths": {
+     "/products": {
+       "get": {
+         "tags": [
+           "Productos"
+         ],
+         "summary": "Obtener todos los productos",
+         "description": "Obtener una lista de objetos todos los productos que tiene la carta",
+         "produces": [
+           "application/json"
+         ],
+         "responses": {
+           "200": {
+             "description": "Products listed",
+             "schema": {
+               "type": "array",
+               "items": {
+                 "$ref": "#/components/schemas/ProductsGet"
+               }
+             }
+           }
+         }
+       },
+       "post": {
+         "tags": [
+           "Productos"
+         ],
+         "summary": "Creamos un producto",
+         "description": "Con la data enviada del cliente creamos un nuevo producto",
+         "security": [
+           {
+             "BearerAuth": []
+           }
+         ],
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "in": "body",
+             "name": "body",
+             "description": "Objeto de un producto va a ser creado en la Base de Datos",
+             "required": true,
+             "schema": {
+               "$ref": "#/components/schemas/ProductsPost"
+             }
+           }
+         ],
+         "responses": {
+           "201": {
+             "description": "Product created"
+           },
+           "401": {
+             "description": "Unauthorized"
+           }
+         }
+       }
+     },
+     "/products/{productId}": {
+       "get": {
+         "tags": [
+           "Productos"
+         ],
+         "summary": "Obtener un producto",
+         "description": "Obtener un objeto de un producto de la carta con el id",
+         "produces": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "productId",
+             "in": "path",
+             "description": "Id de producto, devuelve el producto",
+             "required": true,
+             "type": "integer"
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Product listed",
+             "schema": {
+               "$ref": "#/components/schemas/ProductsGet"
+             }
+           }
+         }
+       },
+       "put": {
+         "tags": [
+           "Productos"
+         ],
+         "summary": "ACtualizar un producto",
+         "description": "Con la data y id enviados desde cliente actualizamos un producto",
+         "security": [
+           {
+             "BearerAuth": []
+           }
+         ],
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "productId",
+             "in": "path",
+             "description": "Id del producto es necesario para actualizar",
+             "required": true,
+             "type": "integer"
+           },
+           {
+             "name": "body",
+             "in": "body",
+             "description": "Objecto del producto actualizado, no todos los campos son requeridos",
+             "required": true,
+             "schema": {
+               "$ref": "#/components/schemas/ProductsPut"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Product update"
+           },
+           "401": {
+             "description": "Unauthorized"
+           }
+         }
+       },
+       "delete": {
+         "tags": [
+           "Productos"
+         ],
+         "summary": "Eliminar un producto",
+         "description": "Con el id enviado desde el cliente eliminamos un producto",
+         "security": [
+           {
+             "BearerAuth": []
+           }
+         ],
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "productId",
+             "in": "path",
+             "description": "Id del producto es necesario para eliminar",
+             "required": true,
+             "type": "integer"
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "Product delete"
+           },
+           "401": {
+             "description": "Unauthorized"
+           }
+         }
+       }
+     },
+     "/users": {
+       "get": {
+         "tags": [
+           "Usuarios"
+         ],
+         "summary": "Obtener todos los usuarios",
+         "description": "Obtener una lista de objetos todos los usuarios que tiene la app",
+         "produces": [
+           "application/json"
+         ],
+         "responses": {
+           "200": {
+             "description": "Users listed",
+             "schema": {
+               "type": "array",
+               "items": {
+                 "$ref": "#/components/schemas/UsersGet"
+               }
+             }
+           }
+         }
+       }
+     },
+     "/users/{userId}": {
+       "get": {
+         "tags": [
+           "Usuarios"
+         ],
+         "summary": "Obtener un usuario",
+         "description": "Obtener un objeto de un usuario de la app con el id",
+         "produces": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "userId",
+             "in": "path",
+             "description": "Id de usuarios, devuelve el usuario",
+             "required": true,
+             "type": "integer"
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "User listed",
+             "schema": {
+               "$ref": "#/components/schemas/UsersGet"
+             }
+           }
+         }
+       },
+       "put": {
+         "tags": [
+           "Usuarios"
+         ],
+         "summary": "Actualizar un usuario",
+         "description": "Con la data y id enviados desde cliente actualizamos un usuario",
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "userId",
+             "in": "path",
+             "description": "Id del usuario es necesario para actualizar",
+             "required": true,
+             "type": "integer"
+           },
+           {
+             "name": "body",
+             "in": "body",
+             "description": "Objecto del usuario actualizado, no todos los campos son requeridos",
+             "required": true,
+             "schema": {
+               "$ref": "#/components/schemas/UsersPut"
+             }
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "User update"
+           }
+         }
+       },
+       "delete": {
+         "tags": [
+           "Usuarios"
+         ],
+         "summary": "Eliminar un usuario",
+         "description": "Con el id enviado desde el cliente eliminamos un usuario",
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "userId",
+             "in": "path",
+             "description": "Id del usuario es necesario para eliminar",
+             "required": true,
+             "type": "integer"
+           }
+         ],
+         "responses": {
+           "200": {
+             "description": "User delete"
+           }
+         }
+       }
+     },
+     "/auth/register": {
+       "post": {
+         "tags": [
+           "Autenticación"
+         ],
+         "summary": "Registrar y crear usuario",
+         "description": "Con la data enviada del cliente encriptamos la contraseña y guardamos las credenciales en la tabla **auth**, luego eliminamos la contraseña del objeto usuario y lo guardamos así en tabla **user**",
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "in": "body",
+             "name": "body",
+             "description": "Objeto de un usuario va a ser creado en la Base de Datos",
+             "required": true,
+             "schema": {
+               "$ref": "#/components/schemas/auth/RegisterPost"
+             }
+           }
+         ],
+         "responses": {
+           "201": {
+             "description": "User registered"
+           }
+         }
+       }
+     },
+     "/auth/login": {
+       "post": {
+         "tags": [
+           "Autenticación"
+         ],
+         "summary": "Iniciamos sesión en la app",
+         "description": "Con la data enviada del cliente iniciamos sesión, con el username traemos las credenciales de la tabla **auth** y comparamos las contraseñas con la que viene del cliente con la de la Base de Datos",
+         "security": [
+           {
+             "BasicAuth": []
+           }
+         ],
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "in": "body",
+             "name": "body",
+             "description": "Objeto de las credenciales de una usuario que va a iniciar sesión",
+             "required": true,
+             "schema": {
+               "$ref": "#/components/schemas/auth/LoginPost"
+             }
+           }
+         ],
+         "responses": {
+           "201": {
+             "description": "Product created"
+           }
+         }
+       }
+     }
+   },
+   "components": {
+     "securitySchemes": {
+       "BasicAuth": {
+         "type": "http",
+         "scheme": "basic"
+       },
+       "BearerAuth": {
+         "type": "http",
+         "scheme": "bearer",
+         "bearerFormat": "JWT"
+       }
+     },
+     "schemas": {
+       "ProductsGet": {
+         "type": "object",
+         "properties": {
+           "_id": {
+             "type": "integer",
+             "example": "60046d0a5852972990e64145"
+           },
+           "name": {
+             "type": "string",
+             "example": "Sushi Nigiri"
+           },
+           "price": {
+             "type": "integer",
+             "example": 25
+           },
+           "description": {
+             "type": "string",
+             "example": "Un sushi muy delicioso"
+           },
+           "status": {
+             "type": "boolean",
+             "example": true
+           },
+           "type": {
+             "type": "string",
+             "example": "sushi"
+           }
+         }
+       },
+       "ProductsPost": {
+         "type": "object",
+         "properties": {
+           "name": {
+             "type": "string",
+             "example": "Sushi Nigiri"
+           },
+           "price": {
+             "type": "integer",
+             "example": 25
+           },
+           "description": {
+             "type": "string",
+             "example": "Un sushi muy delicioso"
+           },
+           "status": {
+             "type": "boolean",
+             "example": true
+           },
+           "type": {
+             "type": "string",
+             "example": "sushi"
+           }
+         }
+       },
+       "ProductsPut": {
+         "type": "object",
+         "properties": {
+           "name": {
+             "type": "string",
+             "example": "Sushi Nigiri"
+           },
+           "price": {
+             "type": "integer",
+             "example": 25
+           },
+           "description": {
+             "type": "string",
+             "example": "Un sushi muy delicioso"
+           },
+           "status": {
+             "type": "boolean",
+             "example": true
+           }
+         }
+       },
+       "UsersGet": {
+         "type": "object",
+         "properties": {
+           "_id": {
+             "type": "integer",
+             "example": "60046d0a5852972990e64145"
+           },
+           "name": {
+             "type": "string",
+             "example": "Daniel"
+           },
+           "username": {
+             "type": "string",
+             "example": "Admin"
+           }
+         }
+       },
+       "UsersPut": {
+         "type": "object",
+         "properties": {
+           "name": {
+             "type": "string",
+             "example": "Daniel"
+           },
+           "username": {
+             "type": "string",
+             "example": "Admin"
+           }
+         }
+       },
+       "auth": {
+         "RegisterPost": {
+           "type": "object",
+           "properties": {
+             "name": {
+               "type": "string",
+               "example": "Daniel"
+             },
+             "username": {
+               "type": "string",
+               "example": "Admin"
+             },
+             "password": {
+               "type": "string",
+               "example": "123456"
+             }
+           }
+         },
+         "LoginPost": {
+           "type": "object",
+           "properties": {
+             "username": {
+               "type": "string",
+               "example": "Daniel"
+             },
+             "password": {
+               "type": "string",
+               "example": "123456"
+             }
+           }
+         }
+       }
+     }
+   }
+}
