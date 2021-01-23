@@ -2,11 +2,7 @@
    Api para menú de restaurante con CRUD de productos, con registro e inicio de sesión de usuario admin para gestionar los productos en la carta del menú. **Solo lo métodos GET de productos pueden ser accedidos por cualquiera, los demás deberán tener autorización**
 
    Documentación completa:
-<<<<<<< HEAD
       [Documentación Api Restaurant](http://localhost:3001/api-docs/)
-=======
-      [Documentación Api Restaurant]('http://localhost:3001/api-docs/')
->>>>>>> 34bcd7e24cf093ff61666e4bb9822777aefdb998
 
 ## Formato de carpetas
 
