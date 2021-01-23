@@ -1,4 +1,6 @@
 const express = require('express');
+const schemaValidation = require('../../utils/middleware/schemaValidation');
+const { userIdSchema, updateUserSchema } = require('../../utils/schemas/users')
 const UsersService = require('./controller');
 const router = express.Router();
 
@@ -30,7 +32,10 @@ router.get('/:userId', async (req, res, next) => {
    }
 });
 
-router.put('/:userId', async (req, res, next) => {
+router.put('/:userId',
+   schemaValidation(updateUserSchema),
+   schemaValidation(userIdSchema, 'params'),
+   async (req, res, next) => {
    const { userId } = req.params;
    const { body: user } = req;
    try {

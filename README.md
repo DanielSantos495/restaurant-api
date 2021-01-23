@@ -1,33 +1,33 @@
-components/
-   controller: llamamos los métodos de la BD
-   route: métodos http
-routes/
-   enrutador de la app //Patrón de inversión de control
-store/
-   conexión a la BD
-index.js - entry de la app, donde levantamos el server
-
 # Restaurant
+   Api para menú de restaurante con CRUD de productos, con registro e inicio de sesión de usuario admin para gestionar los productos en la carta del menú. **Solo lo métodos GET de productos pueden ser accedidos por cualquiera, los demás deberán tener autorización**
 
-Una app para gestionar el menú de un restaurante:
-   - Tiene el dominio: www.ejemplomenu.com para el usuario final (comensal)
-   - Tiene dominio: www.ejemplomenu.com/admin/login:
-      - Nos permite agregar, editar y eliminar productos del menú
-      - Hay una cuenta administrador:
-      Nombre de usuario: Admin
-      Contraseña: 123456
+   Documentación completa:
+      [Documentación Api Restaurant]('http://localhost:3001/api-docs/')
 
-      Puedes entrar y probar
+## Formato de carpetas
+
+   components/
+      controller: llamamos los métodos de la BD
+      route: métodos http
+   routes/
+      enrutador de la app //Patrón de inversión de control
+   store/
+      conexión a la BD
+   index.js - entry de la app, donde levantamos el server
 
 ## Tecnologías
 
-Frontend:
-   - NextJs
-   - Babel
-   - Styled Components
+   Frontend:
+      - NextJs
+      - Babel
+      - Styled Components
+      [Repostitorio]('https://github.com/DanielSantos495/restaurant')
 
-Backend:
-   - NodeJs
-   - Express
-   - JWT
-   - Mongo
+   Backend:
+      - NodeJs
+      - Express
+      - JWT
+      - Mongo
+
+## Licencia
+   Restaurant API se lanza bajo la licencia [MIT](https://opensource.org/licenses/MIT).
