@@ -6,8 +6,6 @@ const withoutStackError = require('../withoutStackErro');
 
 const usersService = new UsersService();
 
-
-
 // Verificamos si el token esta valido
 const verify = token => {
    return jwt.verify(token, config.authJwtSecret)
@@ -15,11 +13,10 @@ const verify = token => {
 
 // Sacamos el token de los headers
 const getToken = header => {
-   if(!header) {
+   if(!header || header.replace('Bearer ', '') === 'null') {
       throw withoutStackError('Not token', 401);
-
    }
-      // Si indexOf es igual a - 1, es que no esta Bearer en el header
+   // Si indexOf es igual a - 1, es que no esta Bearer en el header
    if(header.indexOf('Bearer ') === -1 ) {
       throw withoutStackError('Invalid format', 401);
    }

@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(cors()); //Sin config, para todos los dominios, //Config dominio fijo después de hacer frontend
-app.use(helmet()) //Agrega headers de seguridad
+app.use(helmet()); //Agrega headers de seguridad
 app.use(express.json());
 
 // Rutas

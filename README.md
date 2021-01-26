@@ -21,7 +21,8 @@
       - NextJs
       - Babel
       - Styled Components
-      [Repostitorio](https://github.com/DanielSantos495/restaurant)
+
+   Repositorio: [Restaurant](https://github.com/DanielSantos495/restaurant)
 
    Backend:
       - NodeJs

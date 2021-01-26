@@ -4,7 +4,7 @@ const withoutStackError = (message, status) => {
 
    const err = new Error(message);
    err.statusCode = status
-
+   console.log(err, 'error')
    if(config.env  === 'development') {
       return err;
    } else {
