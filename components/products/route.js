@@ -1,7 +1,7 @@
 const express = require('express');
 const jwtValidation = require('../../utils/middleware/jwtValidation');
 const cacheResponse = require('../../utils/cacheResponse');
-const { ONE_WEEK_IN_SECONDS, ONE_DAY_IN_SECONDS } = require('../../utils/time');
+const { FIVE_SECONDS } = require('../../utils/time');
 const schemaValidation = require('../../utils/middleware/schemaValidation');
 const { productIdSchema, createProductSchema, updateProductSchema } = require('../../utils/schemas/products');;
 const router = express.Router();
@@ -12,7 +12,7 @@ const productService = new ProductService;
 
 router.get('/', async (req, res, next) => {
    if(config.env === 'production') {
-      cacheResponse(res, ONE_WEEK_IN_SECONDS);
+      cacheResponse(res, FIVE_SECONDS);
    }
    try {
       const allProducts = await productService.getProducts();
@@ -27,7 +27,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:productId', async (req, res, next) => {
    if(config.env === 'production') {
-      cacheResponse(res, ONE_DAY_IN_SECONDS)
+      cacheResponse(res, FIVE_SECONDS)
    }
    const { productId } = req.params;
 
