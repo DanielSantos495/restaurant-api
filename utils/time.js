@@ -1,4 +1,4 @@
 
 module.exports = {
-   FIVE_SECONDS: 604800,
+   FIVE_SECONDS: 5,
 }
