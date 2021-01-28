@@ -2,7 +2,7 @@
    Api para menú de restaurante con CRUD de productos, con registro e inicio de sesión de usuario admin para gestionar los productos en la carta del menú. **Solo lo métodos GET de productos pueden ser accedidos por cualquiera, los demás deberán tener autorización**
 
    Documentación completa:
-      [Documentación Api Restaurant](http://localhost:3001/api-docs/)
+      [Documentación Api Restaurant](https://restaurant.danielsantos495.vercel.app/api-docs/)
 
 ## Formato de carpetas
 
